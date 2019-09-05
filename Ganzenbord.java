@@ -12,15 +12,13 @@ class Ganzenbord {
 	//binnenkomst functie main; roept functies applicatie op volgorde aan
 	public static void main (String[] args) {
 		setBeurt();
-		setWorp();
-		setPositie();
-		winCheck();
 	}
 
 	//functie setBeurt; veranderd status globale variabele beurt en print beurt
 	public static void setBeurt() {
 		beurt = getBeurt();
-		System.out.println(beurt);
+
+		setWorp();
 	}
 
 	//functie setWorp; veranderd status globale variable worp (dobbelsteen) en print worp
@@ -28,17 +26,28 @@ class Ganzenbord {
 		int[] dobbelsteen = {1, 2, 3, 4, 5, 6};
 		
 		worp = getWorp(dobbelsteen);
-		System.out.println(worp);
+
+		setPositie();
 	}
 	
 	//functie setPositie; veranderd status van globale variable positie1 en print positie1
 	public static void setPositie() {
 		if (beurt == 1) {
 			positie1 = getPositie(positie1);
-			System.out.println(positie1);
 		}else {
 			positie2 = getPositie(positie2);
-			System.out.println(positie2);
+		}
+		
+		print();
+		winCheck();
+	}
+
+	//
+	public static void print() {
+		if (beurt == 1) {
+			System.out.println("Speler1 dobbelt "+worp+" en staat nu op vakje "+positie1);
+		}else {
+			System.out.println("Speler2 dobbelt "+worp+" en staat nu op vakje "+positie2);
 		}
 	}
 
