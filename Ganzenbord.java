@@ -2,18 +2,46 @@
 import java.util.Random;
 class Ganzenbord {
 	
-	static int worp;
+	//globale variabelen; worden gebruikt door meerdere functies
+	private static int worp;
+	private static int positie1;
 	
+
+	//binnenkomst functie main; roept functies applicatie op volgorde aan
 	public static void main (String args[]) {
-		
+		setWorp();
+		setPositie();
+	}
+
+	//functie setWorp; veranderd status globale variable worp (dobbelsteen) en print worp
+	public static void setWorp() {
 		int[] dobbelsteen = {1, 2, 3, 4, 5, 6};
 		
-		worp = getRandom(dobbelsteen);
+		worp = getWorp(dobbelsteen);
 		System.out.println(worp);
 	}
 	
-	public static int getRandom(int[] array) {
+	// functie getRandom; haalt random getal uit meegkregen array en returnt het gekozen getal
+	public static int getWorp(int[] array) {
    		int rnd = new Random().nextInt(array.length);
 		return array[rnd];
+	}
+	
+	//functie setPositie; veranderd status van globale variable positie1 en print positie1
+	public static void setPositie() {
+		positie1 = getPositie();
+		System.out.println(positie1);
+	}
+
+	//functie getPositie; retunt nieuwe positie speler op basis van huidige positie en worp
+	public static int getPositie(){
+		int positieNew;
+		if ((positie1 + worp) > 50) {
+			positieNew = 35;
+			return positieNew;
+		} else {
+			positieNew = positie1 + worp;
+			return positieNew;
+		}
 	}
 }
